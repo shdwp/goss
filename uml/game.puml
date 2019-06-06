@@ -1,0 +1,34 @@
+@startuml
+
+namespace game {
+    class Event {
+        incoming event
+    }
+
+    class Loop {
+        tcell.Screen screen
+    }
+
+    class State {
+        shared game state
+    }
+
+    class Component {
+        + Render(screen tcell.Screen)
+        + ProcessEvent(event game.Event, state *game.State)
+    }
+}
+
+namespace ui {
+    class MapComponent<game.Component> {
+    }
+
+    class StatusComponent<game.Component> {
+    }
+}
+
+game.Loop --* ui.MapComponent
+game.Loop --* ui.StatusComponent
+game.Loop --* game.Component: interface
+
+@enduml

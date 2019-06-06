@@ -1,0 +1,28 @@
+@startuml
+hide footbox
+
+participant Window as w
+participant Loop as l
+participant PlayerView as pv
+participant Map as m
+
+loop
+w -> l: Input()
+l --> pv: Process()
+
+pv -> pv: updatePlayer()
+pv -> m: Update()
+m --> pv
+
+pv --> l: processResult
+l --> w
+
+...
+
+w -> l: Render()
+l -> pv: Render()
+pv --> l
+l --> w
+end
+
+@enduml
